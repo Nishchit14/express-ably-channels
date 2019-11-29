@@ -11,7 +11,7 @@ An express middleware for AblyChannels
 
 ### config
 
-```
+```javascript
 
 var express = require('express');
 var expressAblyChannels = require('express-ably-channels');
