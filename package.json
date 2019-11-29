@@ -1,0 +1,25 @@
+{
+  "name": "express-ably-channels",
+  "version": "1.0.0",
+  "description": "An express middleware for AblyChannels",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nishchit14/express-ably-channels.git"
+  },
+  "author": "Nishchit14",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nishchit14/express-ably-channels/issues"
+  },
+  "homepage": "https://github.com/Nishchit14/express-ably-channels#readme",
+  "dependencies": {
+    "systeminformation": "^4.16.0"
+  },
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
