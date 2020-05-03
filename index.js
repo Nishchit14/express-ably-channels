@@ -1,6 +1,15 @@
 const si = require("systeminformation")
 const http = require("https");
 
+const CONSTANTS = {
+  CHANNEL_NAME: "express-server-info",
+  ACTION_BATTERY_STATUS: "ON_BATTERY_STATUS",
+  ACTION_CPU_TEMP: "ON_CPU_TEMP",
+  ACTION_CPU_MEM: "ON_CPU_MEM",
+  ACTION_NETWORK_STATS: "ON_NETWORK_STATS",
+  ACTION_DISK_IO_STATS: "ON_DISK_IO_STATS"
+}
+
 /**
  * Sending request to ably channel via `http`
  * @param data
@@ -14,7 +23,7 @@ let request = (data, key, ablyEvent) => {
       "method": "POST",
       "hostname": "rest.ably.io",
       "port": null,
-      "path": "/channels/Tooling/messages",
+      "path": `/channels/${CONSTANTS.CHANNEL_NAME}/messages`,
       "headers": {
         "content-type": "application/json",
         "Authorization": `Basic ${Buffer.from(key).toString("base64")}`
@@ -30,7 +39,7 @@ let request = (data, key, ablyEvent) => {
 
     res.on("end", function () {
       let body = Buffer.concat(chunks);
-      console.log(body.toString());
+      // console.log(body.toString());
     });
   });
 
@@ -40,33 +49,34 @@ let request = (data, key, ablyEvent) => {
 
 /**
  * Fetching System Information
- * @param interval      - interval to send request
  * @param ablyKey       - ably key
+ * @param interval      - interval to send request
  * @returns {Function}  - express middleware function
  */
-module.exports = (interval, ablyKey) => {
+module.exports = (ablyKey, channelName=CONSTANTS.CHANNEL_NAME, interval=5000) => {
+  
   setInterval(() => {
     si.battery()
       .then(data => {
         data.maxcapacity = data.maxcapacity / 1000000
         data.currentcapacity = data.currentcapacity / 1000000
         data["unit"] = "Wh"
-        request(data, ablyKey, "onBatteryStats")
+        request(data, ablyKey, CONSTANTS.ACTION_BATTERY_STATUS)
       })
       .catch(error => console.log(error));
 
     si.cpuTemperature().then(data => {
-      request(data, ablyKey, "onCPUTemp")
+      request(data, ablyKey, channelName, CONSTANTS.ACTION_CPU_TEMP)
     })
 
     si.mem().then(data => {
       data["unit"] = "Byte"
-      request(data, ablyKey, "onCPUMem")
+      request(data, ablyKey, channelName, CONSTANTS.ACTION_CPU_MEM)
     })
 
     si.networkStats().then(data => {
       data[0]["unit"] = "Byte"
-      request(data, ablyKey, "onNetworkStats")
+      request(data, ablyKey, channelName, CONSTANTS.ACTION_NETWORK_STATS)
     })
     si.disksIO().then(data => {
 
@@ -77,7 +87,7 @@ module.exports = (interval, ablyKey) => {
       data.wIO_sec = data.wIO_sec / 1e+6
       data.tIO_sec = data.tIO_sec / 1e+6
       data["unit"] = "Mb"
-      request(data, ablyKey, "onDiskIOStats")
+      request(data, ablyKey, channelName, CONSTANTS.ACTION_DISK_IO_STATS)
     })
   }, interval)
 
