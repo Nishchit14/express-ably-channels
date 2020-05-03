@@ -73,3 +73,8 @@ channelServerInfo.subscribe('ON_DISK_IO_STATS', (message) => {
 
 ...
 ```
+
+### Run Example?
+1. clone this repo
+2. install dependancies `npm i` or `yarn`
+3. run server `node example/server.js`
