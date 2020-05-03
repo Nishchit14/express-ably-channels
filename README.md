@@ -1,15 +1,15 @@
 # Express server's info middleware by AblyChannels
 An express middleware for AblyChannels to gather the express server information and send them to the `express-ably` (default) channel. so all the subscribed clients can receive this server information.
 
-### Install 
+### 1. Install
 
-**npm**
-`npm i express-ably-channels`
+```
+npm i express-ably-channels 
+or
+yarn add express-ably-channels
+```
 
-**yarn**
-`yarn add express-ably-channels`
-
-### Usage and config
+### 2. Usage and config
 
 ```javascript
 
@@ -32,16 +32,15 @@ app.listen(3001, "localhost");
 ```
 
 #### Middleware params
-| Param | Required? | Default Valye | Description |
+| Param | Required? | Default Value | Description |
 |-|-| - | - |
 | Ably Key | yes| - | Your Ably Key |
 | Channel Name | no  | `express-server-info` | Give any custom `channel name` here|
 | Interval | no | 5000 | Interval in milliseconds will send the server infomation to AblyChannel on specified value. |
 
-#### How to subscibe the Channel's events to receive the server information?
+### 3. How to subscibe the Channel's events to receive the server information?
 
-**Step-1**
- - Connect AblyChannel which you have set in `express-ably-channels` middleware. 
+1. Connect AblyChannel which you have set in `express-ably-channels` middleware. 
  ```js
  const CHANNEL_NAME = "express-server-info";
  let ably = new require('ably').Realtime("ably_key_here");
@@ -50,8 +49,7 @@ app.listen(3001, "localhost");
  ...
  ```
 
-**Step-2**
- - Subscribe to the events to receive server's specific information.
+2. Subscribe to the events to receive server's specific information.
 
 | Event name | Description |
 | - | - |
@@ -74,7 +72,7 @@ channelServerInfo.subscribe('ON_DISK_IO_STATS', (message) => {
 ...
 ```
 
-### Run Example?
+### 4. Run Example?
 1. clone this repo
 2. install dependancies `npm i` or `yarn`
 3. run server `node example/server.js`
