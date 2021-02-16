@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Nishchit14/express-ably-channels#readme",
   "dependencies": {
-    "systeminformation": "^4.16.0"
+    "systeminformation": "^5.3.1"
   },
   "devDependencies": {
     "express": "^4.17.1"
