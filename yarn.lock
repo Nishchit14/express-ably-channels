@@ -339,10 +339,10 @@ setprototypeof@1.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-systeminformation@^4.16.0:
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-4.16.0.tgz#d92ce821efdab720496c60656bf65cc68fb03f8c"
-  integrity sha512-1FjxPJSw7ad0zug+1YIQATj6Cn+wM5OBASEpjohEeOD2EGPIf0Cnhthd1L2O1YX+wKgOMuPldGfxYdo8yNHEIg==
+systeminformation@^5.6.4:
+  version "5.6.4"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.6.4.tgz#5f32fcb05a5849e2a0e71b182c1f56ce32219310"
+  integrity sha512-b2tvW1R+qjNEoAGgh734EGLgqbDMghjsHRaWo36skAC6JM1tw1pitcGz/REt+qSIRSXbE4PKECojhaSrBRrEmw==
 
 toidentifier@1.0.0:
   version "1.0.0"
